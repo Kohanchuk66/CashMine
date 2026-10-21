@@ -1,10 +1,11 @@
-import { Platform, StyleSheet } from 'react-native';
+import { Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/shared/config';
 import { AnimatedIcon, ThemedText, ThemedView } from '@/shared/ui';
 import { DevHints } from '@/widgets/dev-hints';
 import { WebBadge } from '@/entities/expo-badge';
+import { ChangeTokenButton } from '@/features/auth-token';
+import { styles } from './HomeScreen.styles';
 
 export function HomeScreen() {
   return (
@@ -17,6 +18,8 @@ export function HomeScreen() {
           </ThemedText>
         </ThemedView>
 
+        <ChangeTokenButton label="Change API Token" />
+
         <ThemedText type="code" style={styles.code}>
           get started
         </ThemedText>
@@ -28,32 +31,3 @@ export function HomeScreen() {
     </ThemedView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
-  },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
-  },
-  title: {
-    textAlign: 'center',
-  },
-  code: {
-    textTransform: 'uppercase',
-  },
-});

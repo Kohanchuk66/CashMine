@@ -1,13 +1,14 @@
 import { SymbolView } from 'expo-symbols';
-import { Platform, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { Platform, Pressable, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/shared/config';
+import { BottomTabInset, Spacing } from '@/shared/config';
 import { useTheme } from '@/shared/lib';
 import { ThemedText, ThemedView } from '@/shared/ui';
 import { ExternalLink } from '@/features/external-link';
 import { ExploreSections } from '@/widgets/explore-sections';
 import { WebBadge } from '@/entities/expo-badge';
+import { styles } from './ExploreScreen.styles';
 
 export function ExploreScreen() {
   const safeAreaInsets = useSafeAreaInsets();
@@ -63,38 +64,3 @@ export function ExploreScreen() {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  scrollView: {
-    flex: 1,
-  },
-  contentContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  container: {
-    maxWidth: MaxContentWidth,
-    flexGrow: 1,
-  },
-  titleContainer: {
-    gap: Spacing.three,
-    alignItems: 'center',
-    paddingHorizontal: Spacing.four,
-    paddingVertical: Spacing.six,
-  },
-  centerText: {
-    textAlign: 'center',
-  },
-  pressed: {
-    opacity: 0.7,
-  },
-  linkButton: {
-    flexDirection: 'row',
-    paddingHorizontal: Spacing.four,
-    paddingVertical: Spacing.two,
-    borderRadius: Spacing.five,
-    justifyContent: 'center',
-    gap: Spacing.one,
-    alignItems: 'center',
-  },
-});

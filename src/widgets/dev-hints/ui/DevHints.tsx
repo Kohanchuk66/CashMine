@@ -1,8 +1,8 @@
 import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
+import { Platform } from 'react-native';
 
-import { Spacing } from '@/shared/config';
 import { HintRow, ThemedText, ThemedView } from '@/shared/ui';
+import { styles } from './DevHints.styles';
 
 function getDevMenuHint() {
   if (Platform.OS === 'web') {
@@ -38,13 +38,3 @@ export function DevHints() {
     </ThemedView>
   );
 }
-
-const styles = StyleSheet.create({
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
-  },
-});

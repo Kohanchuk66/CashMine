@@ -1,6 +1,7 @@
 export * from './config';
 export * from './types';
 export * from './client';
+export * from './token';
 export * from './query-client';
 export * from './QueryProvider';
 export * from './requests';

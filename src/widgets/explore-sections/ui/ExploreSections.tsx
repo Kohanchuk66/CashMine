@@ -1,9 +1,8 @@
 import { Image } from 'expo-image';
-import { StyleSheet } from 'react-native';
 
-import { Spacing } from '@/shared/config';
 import { Collapsible, ThemedText, ThemedView } from '@/shared/ui';
 import { ExternalLink } from '@/features/external-link';
+import { styles } from './ExploreSections.styles';
 
 export function ExploreSections() {
   return (
@@ -70,25 +69,3 @@ export function ExploreSections() {
     </ThemedView>
   );
 }
-
-const styles = StyleSheet.create({
-  sectionsWrapper: {
-    gap: Spacing.five,
-    paddingHorizontal: Spacing.four,
-    paddingTop: Spacing.three,
-  },
-  collapsibleContent: {
-    alignItems: 'center',
-  },
-  imageTutorial: {
-    width: '100%',
-    aspectRatio: 296 / 171,
-    borderRadius: Spacing.three,
-    marginTop: Spacing.two,
-  },
-  imageReact: {
-    width: 100,
-    height: 100,
-    alignSelf: 'center',
-  },
-});

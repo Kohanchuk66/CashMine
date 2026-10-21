@@ -1,6 +1,7 @@
 import axios, { type AxiosError, type AxiosInstance, type InternalAxiosRequestConfig } from 'axios';
 
 import { API_CONFIG } from './config';
+import { tokenStorage, notifyUnauthorized } from './token';
 import { ApiError, type ApiErrorResponse } from './types';
 
 export const apiClient: AxiosInstance = axios.create({
@@ -9,6 +10,14 @@ export const apiClient: AxiosInstance = axios.create({
 
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
+    const url = config.url || '';
+    const isV1 = url.startsWith('/v1') || url.startsWith('v1') || url.includes('/v1');
+    if (isV1) {
+      const token = tokenStorage.getToken();
+      if (token) {
+        config.headers.set('Authorization', `Bearer ${token}`);
+      }
+    }
     return config;
   },
   (error: unknown) => {
@@ -25,6 +34,11 @@ apiClient.interceptors.response.use(
       errorData?.message ||
       error.message ||
       'An unexpected network error occurred';
+
+    if (statusCode === 401) {
+      tokenStorage.removeToken();
+      notifyUnauthorized();
+    }
 
     const normalizedError = new ApiError({
       message,

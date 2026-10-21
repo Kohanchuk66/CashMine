@@ -1,0 +1,38 @@
+import { StyleSheet } from 'react-native';
+
+import { MaxContentWidth, Spacing } from '@/shared/config';
+
+export const styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+  },
+  contentContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  container: {
+    maxWidth: MaxContentWidth,
+    flexGrow: 1,
+  },
+  titleContainer: {
+    gap: Spacing.three,
+    alignItems: 'center',
+    paddingHorizontal: Spacing.four,
+    paddingVertical: Spacing.six,
+  },
+  centerText: {
+    textAlign: 'center',
+  },
+  pressed: {
+    opacity: 0.7,
+  },
+  linkButton: {
+    flexDirection: 'row',
+    paddingHorizontal: Spacing.four,
+    paddingVertical: Spacing.two,
+    borderRadius: Spacing.five,
+    justifyContent: 'center',
+    gap: Spacing.one,
+    alignItems: 'center',
+  },
+});

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 
 import { QueryProvider } from '@/shared/api';
+import '@/shared/lib/firebase';
 import { AnimatedSplashOverlay } from '@/features/splash-overlay';
 import { TokenModal, useToken } from '@/features/auth-token';
 import { TokenScreen } from '@/pages/token';

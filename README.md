@@ -4,7 +4,9 @@ Payback and claims management application built with Expo SDK 58, React Native, 
 
 ## Live Link
 
-- **Local Web App**: [http://localhost:8081](http://localhost:8081)
+- **Live Production App**: [https://cashmine-app-66.web.app](https://cashmine-app-66.web.app)
+- **Alternative URL**: [https://cashmine-app-66.firebaseapp.com](https://cashmine-app-66.firebaseapp.com)
+- **Local Dev Server**: [http://localhost:8081](http://localhost:8081)
 
 ---
 

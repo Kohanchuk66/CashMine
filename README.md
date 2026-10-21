@@ -1,56 +1,97 @@
-# Welcome to your Expo app 👋
+# CashMine Mobile & Web App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Payback and claims management application built with Expo SDK 58, React Native, and Feature-Sliced Design (FSD 2.1).
 
-## Get started
+## Live Link
 
-1. Install dependencies
+- **Local Web App**: [http://localhost:8081](http://localhost:8081)
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+## How to Run Locally
 
-   ```bash
-   npx expo start
-   ```
+### Prerequisites
+- Node.js v20+ or v24+
+- npm or bun
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+### 1. Install Dependencies
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+### 2. Configure Environment
+Create a `.env` file in the project root:
+```bash
+cp .env.example .env
+```
+Ensure `EXPO_PUBLIC_API_URL` is set:
+```env
+EXPO_PUBLIC_API_URL="api"
+```
 
-### Other setup steps
+### 3. Run the App
+- **Web**:
+  ```bash
+  npm run web
+  # or: npx expo start --web
+  ```
+- **iOS / Android**:
+  ```bash
+  npm run ios
+  # or: npm run android
+  ```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+### 4. Run Tests & Health Checks
+- **Unit Tests (25 tests)**:
+  ```bash
+  npm test
+  ```
+- **TypeScript Check**:
+  ```bash
+  npx tsc --noEmit
+  ```
+- **Expo Diagnostics**:
+  ```bash
+  npx expo-doctor
+  ```
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
+## What Works
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 1. Authentication & Token Management
+- First-open prompt asking for the API Bearer token with local storage persistence.
+- In-app token change modal accessible anytime from headers.
+- Route protection: redirecting to the Home screen only when an API token exists.
+- Axios `401 Unauthorized` interceptor that clears stored tokens and re-prompts for authentication.
 
-## Join the community
+### 2. Balances (Home Screen)
+- Displays individual asset balances (Available, Pending, Claiming).
+- Computes estimated total portfolio USD value using live snapshot exchange rates.
+- Snapshot freshness indicator tracking age against the 15-second API recomputation cycle.
+- Pull-to-refresh (`RefreshControl`), manual retry buttons, and loading states.
+- Performance-tuned `ScrollView` with off-screen view clipping, 60fps event throttling, and `React.memo` isolation.
+- Direct "Claim" shortcut on eligible asset balance cards.
 
-Join our community of developers creating universal apps.
+### 3. Claim Page (`/claim`)
+- Asset selection chips displaying available balance and USD equivalents.
+- Numeric amount input with a **MAX** button to quickly populate the full available balance.
+- Live calculation displaying gross amount, network fee, and net received amount (`amount - fee`).
+- Destination wallet selector fetching available payout channels via `GET /v1/claim-options`.
+- Real-time client-side validation against all API rules:
+  - Minimum claim amount (`minAmount <= amount`).
+  - Available balance limit (`amount <= available`).
+  - Precision limit (`decimals` decimal places).
+  - Network fee coverage (`amount > fee`).
+  - Destination selection required.
+- Review confirmation modal before submission.
+- Idempotent claim submission (`POST /v1/claims` with UUID `Idempotency-Key` header).
+- Live claim follower polling `GET /v1/claims/{id}` every 3 seconds until settlement (`pending` ~20s, `completed`, `failed`).
+- Displays failure reason with notification that funds returned to available balance if rejected.
+- Local storage persistence of active claim ID across page reloads.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### 4. Code Quality & Architecture
+- Feature-Sliced Design (FSD 2.1) layered architecture.
+- Complete separation of styles into dedicated `*.styles.ts` files.
+- Zero comments across all application and test code files.
+- High-coverage unit test suite validating amount parsing, validation rules, fees, and portfolio totals.

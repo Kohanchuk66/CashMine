@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 
-import { Spacing } from '@/shared/config';
 import { ThemedText } from '@/shared/ui/themed-text';
 import { ThemedView } from '@/shared/ui/themed-view';
+import { styles } from './HintRow.styles';
 
 export type HintRowProps = {
   title?: string;
@@ -20,15 +20,3 @@ export function HintRow({ title = 'Try editing', hint = 'src/pages/home/ui/HomeS
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  stepRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  codeSnippet: {
-    borderRadius: Spacing.two,
-    paddingVertical: Spacing.half,
-    paddingHorizontal: Spacing.two,
-  },
-});

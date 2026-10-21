@@ -42,3 +42,82 @@ export class ApiError extends Error {
 
 export type RequestConfig = AxiosRequestConfig;
 export type ResponseData<T> = AxiosResponse<T>['data'];
+
+export interface BalanceItem {
+  asset: string;
+  decimals: number;
+  available: string;
+  pending: string;
+  claiming: string;
+  usdPrice: string;
+}
+
+export interface BalancesResponse {
+  asOf: string;
+  items: BalanceItem[];
+}
+
+export type ActivityType = 'accrual' | 'reversal' | 'claim';
+export type ActivityStatus = 'pending' | 'confirmed' | 'completed' | 'failed';
+
+export interface ActivityItem {
+  id: string;
+  type: ActivityType;
+  asset: string;
+  amount: string;
+  status: ActivityStatus;
+  exchange: string | null;
+  createdAt: string;
+  relatedId: string | null;
+}
+
+export interface ActivityResponse {
+  items: ActivityItem[];
+  nextCursor: string | null;
+}
+
+export interface GetActivityParams {
+  limit?: number;
+  cursor?: string | null;
+}
+
+export interface ClaimDestination {
+  id: string;
+  label: string;
+}
+
+export interface ClaimOptionsResponse {
+  asset: string;
+  minAmount: string;
+  fee: string;
+  destinations: ClaimDestination[];
+}
+
+export interface GetClaimOptionsParams {
+  asset: string;
+}
+
+export type ClaimStatus = 'pending' | 'completed' | 'failed';
+
+export interface CreateClaimPayload {
+  asset: string;
+  amount: string;
+  destinationId: string;
+}
+
+export interface CreateClaimParams extends CreateClaimPayload {
+  idempotencyKey?: string;
+}
+
+export interface Claim {
+  id: string;
+  asset: string;
+  amount: string;
+  fee: string;
+  receiveAmount: string;
+  destinationId: string;
+  status: ClaimStatus;
+  failureReason: string | null;
+  createdAt: string;
+  updatedAt: string;
+}

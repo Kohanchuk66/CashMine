@@ -1,0 +1,13 @@
+import { useApiQuery } from './use-api-query';
+import { queryKeys } from './query-keys';
+import { getBalances } from '../requests/balances';
+import type { BalancesResponse } from '../types';
+
+export function useBalances(options?: { refetchInterval?: number | false; enabled?: boolean }) {
+  return useApiQuery<BalancesResponse>({
+    queryKey: queryKeys.balances(),
+    queryFn: getBalances,
+    refetchInterval: options?.refetchInterval ?? 15000,
+    enabled: options?.enabled,
+  });
+}

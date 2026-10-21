@@ -1,19 +1,18 @@
+import { usePathname } from 'expo-router';
 import {
-  Tabs,
   TabList,
-  TabTrigger,
-  TabSlot,
-  TabTriggerSlotProps,
   TabListProps,
+  Tabs,
+  TabSlot,
+  TabTrigger,
+  TabTriggerSlotProps,
 } from 'expo-router/ui';
-import { SymbolView } from 'expo-symbols';
 import { Pressable, View } from 'react-native';
 
+import { ChangeTokenButton } from '@/features/auth-token';
 import { Colors } from '@/shared/config';
 import { useColorScheme } from '@/shared/lib';
 import { ThemedText, ThemedView } from '@/shared/ui';
-import { ExternalLink } from '@/features/external-link';
-import { ChangeTokenButton } from '@/features/auth-token';
 import { styles } from './AppTabs.web.styles';
 
 export default function AppTabs() {
@@ -23,7 +22,7 @@ export default function AppTabs() {
       <TabList asChild>
         <CustomTabList>
           <TabTrigger name="home" href="/" asChild>
-            <TabButton>Home</TabButton>
+            <TabButton>Balances</TabButton>
           </TabTrigger>
           <TabTrigger name="explore" href="/explore" asChild>
             <TabButton>Explore</TabButton>
@@ -49,8 +48,13 @@ export function TabButton({ children, isFocused, ...props }: TabTriggerSlotProps
 }
 
 export function CustomTabList(props: TabListProps) {
+  const pathname = usePathname();
   const scheme = useColorScheme();
   const colors = Colors[scheme === 'dark' ? 'dark' : 'light'];
+
+  if (pathname === '/token') {
+    return null;
+  }
 
   return (
     <View {...props} style={styles.tabListContainer}>
@@ -62,17 +66,6 @@ export function CustomTabList(props: TabListProps) {
         {props.children}
 
         <ChangeTokenButton />
-
-        <ExternalLink href="https://docs.expo.dev" asChild>
-          <Pressable style={styles.externalPressable}>
-            <ThemedText type="link">Docs</ThemedText>
-            <SymbolView
-              tintColor={colors.text}
-              name={{ ios: 'arrow.up.right.square', web: 'link' }}
-              size={12}
-            />
-          </Pressable>
-        </ExternalLink>
       </ThemedView>
     </View>
   );

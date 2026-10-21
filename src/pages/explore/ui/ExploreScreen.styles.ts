@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
   contentContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
+    paddingBottom: 88,
   },
   container: {
     maxWidth: MaxContentWidth,
@@ -17,8 +18,8 @@ export const styles = StyleSheet.create({
   titleContainer: {
     gap: Spacing.three,
     alignItems: 'center',
-    paddingHorizontal: Spacing.four,
-    paddingVertical: Spacing.six,
+    paddingHorizontal: Spacing.three,
+    paddingVertical: Spacing.four,
   },
   centerText: {
     textAlign: 'center',
@@ -34,5 +35,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: Spacing.one,
     alignItems: 'center',
+    minHeight: 44,
   },
 });

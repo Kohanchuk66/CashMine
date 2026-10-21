@@ -2,7 +2,7 @@ import { router } from 'expo-router';
 import { memo } from 'react';
 import { Pressable, View } from 'react-native';
 
-import { useTheme } from '@/shared/lib';
+import { useResponsive, useTheme } from '@/shared/lib';
 import { ThemedText, ThemedView } from '@/shared/ui';
 import type { BalanceItem } from '@/shared/api';
 import { styles } from './BalanceItemCard.styles';
@@ -22,6 +22,7 @@ function formatUsd(val: number): string {
 
 export const BalanceItemCard = memo(function BalanceItemCard({ item }: BalanceItemCardProps) {
   const theme = useTheme();
+  const { isMobile } = useResponsive();
 
   const price = parseFloat(item.usdPrice) || 0;
   const avail = parseFloat(item.available) || 0;
@@ -31,7 +32,7 @@ export const BalanceItemCard = memo(function BalanceItemCard({ item }: BalanceIt
   const totalUsdValue = totalQuantity * price;
 
   return (
-    <ThemedView type="backgroundElement" style={styles.card}>
+    <ThemedView type="backgroundElement" style={[styles.card, isMobile && styles.cardMobile]}>
       <View style={styles.topRow}>
         <View style={styles.assetIdentity}>
           <ThemedView type="backgroundSelected" style={styles.assetBadge}>

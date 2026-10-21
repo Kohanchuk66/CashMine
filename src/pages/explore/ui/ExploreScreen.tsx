@@ -3,7 +3,7 @@ import { Platform, Pressable, ScrollView } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { BottomTabInset, Spacing } from '@/shared/config';
-import { useTheme } from '@/shared/lib';
+import { useResponsive, useTheme } from '@/shared/lib';
 import { ThemedText, ThemedView } from '@/shared/ui';
 import { ExternalLink } from '@/features/external-link';
 import { ExploreSections } from '@/widgets/explore-sections';
@@ -17,6 +17,7 @@ export function ExploreScreen() {
     bottom: safeAreaInsets.bottom + BottomTabInset + Spacing.three,
   };
   const theme = useTheme();
+  const { isMobile } = useResponsive();
 
   const contentPlatformStyle = Platform.select({
     android: {
@@ -26,8 +27,8 @@ export function ExploreScreen() {
       paddingBottom: insets.bottom,
     },
     web: {
-      paddingTop: Spacing.six,
-      paddingBottom: Spacing.four,
+      paddingTop: isMobile ? Spacing.two : Spacing.six,
+      paddingBottom: 88,
     },
   });
 

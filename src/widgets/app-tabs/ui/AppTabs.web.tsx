@@ -10,8 +10,7 @@ import {
 import { Pressable, View } from 'react-native';
 
 import { ChangeTokenButton } from '@/features/auth-token';
-import { Colors } from '@/shared/config';
-import { useColorScheme } from '@/shared/lib';
+import { useResponsive } from '@/shared/lib';
 import { ThemedText, ThemedView } from '@/shared/ui';
 import { styles } from './AppTabs.web.styles';
 
@@ -37,12 +36,21 @@ export default function AppTabs() {
 }
 
 export function TabButton({ children, isFocused, ...props }: TabTriggerSlotProps) {
+  const { isMobile } = useResponsive();
+
   return (
-    <Pressable {...(props as any)} style={({ pressed }) => pressed && styles.pressed}>
+    <Pressable
+      {...(props as any)}
+      style={({ pressed }) => [
+        isMobile && styles.tabButtonPressableMobile,
+        pressed && styles.pressed,
+      ]}>
       <ThemedView
         type={isFocused ? 'backgroundSelected' : 'backgroundElement'}
-        style={styles.tabButtonView}>
-        <ThemedText type="small" themeColor={isFocused ? 'text' : 'textSecondary'}>
+        style={isMobile ? styles.tabButtonViewMobile : styles.tabButtonViewDesktop}>
+        <ThemedText
+          type={isFocused ? 'smallBold' : 'small'}
+          themeColor={isFocused ? 'text' : 'textSecondary'}>
           {children}
         </ThemedText>
       </ThemedView>
@@ -52,18 +60,27 @@ export function TabButton({ children, isFocused, ...props }: TabTriggerSlotProps
 
 export function CustomTabList(props: TabListProps) {
   const pathname = usePathname();
-  const scheme = useColorScheme();
-  const colors = Colors[scheme === 'dark' ? 'dark' : 'light'];
+  const { isMobile } = useResponsive();
 
   if (pathname === '/token') {
     return null;
   }
 
+  if (isMobile) {
+    return (
+      <View {...props} style={styles.tabListContainerMobile}>
+        <ThemedView type="backgroundElement" style={styles.innerContainerMobile}>
+          {props.children}
+        </ThemedView>
+      </View>
+    );
+  }
+
   return (
-    <View {...props} style={styles.tabListContainer}>
-      <ThemedView type="backgroundElement" style={styles.innerContainer}>
+    <View {...props} style={styles.tabListContainerDesktop}>
+      <ThemedView type="backgroundElement" style={styles.innerContainerDesktop}>
         <ThemedText type="smallBold" style={styles.brandText}>
-          Expo Starter
+          CashMine
         </ThemedText>
 
         {props.children}

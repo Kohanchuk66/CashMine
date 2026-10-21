@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { ActivityIndicator, Pressable, View } from 'react-native';
 
 import { useClaim } from '@/shared/api';
-import { useTheme } from '@/shared/lib';
+import { useResponsive, useTheme } from '@/shared/lib';
 import { ThemedText, ThemedView } from '@/shared/ui';
 import { styles } from './ClaimStatusCard.styles';
 
@@ -15,6 +15,7 @@ export type ClaimStatusCardProps = {
 
 export function ClaimStatusCard({ claimId, onClaimAgain, onGoToBalances }: ClaimStatusCardProps) {
   const theme = useTheme();
+  const { isMobile } = useResponsive();
   const { data: claim, isLoading, isError, error, refetch, isFetching } = useClaim(claimId);
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
 
@@ -96,7 +97,9 @@ export function ClaimStatusCard({ claimId, onClaimAgain, onGoToBalances }: Claim
       : styles.statusTextFailed;
 
   return (
-    <ThemedView type="backgroundElement" style={styles.card}>
+    <ThemedView
+      type="backgroundElement"
+      style={[styles.card, isMobile && styles.cardMobile]}>
       <View style={styles.headerRow}>
         <View style={styles.idGroup}>
           <ThemedText type="small" themeColor="textSecondary">

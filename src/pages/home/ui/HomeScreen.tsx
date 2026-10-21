@@ -12,7 +12,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useBalances } from '@/shared/api';
-import { useTheme } from '@/shared/lib';
+import { useResponsive, useTheme } from '@/shared/lib';
 import { ThemedText, ThemedView } from '@/shared/ui';
 import { ChangeTokenButton, useToken } from '@/features/auth-token';
 import { TotalBalanceCard } from './TotalBalanceCard';
@@ -22,6 +22,7 @@ import { styles } from './HomeScreen.styles';
 
 export function HomeScreen() {
   const theme = useTheme();
+  const { isMobile } = useResponsive();
   const { token, isReady } = useToken();
   const { data, isLoading, isError, error, refetch, isFetching } = useBalances();
 
@@ -113,7 +114,10 @@ export function HomeScreen() {
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
         <ScrollView
           style={styles.scrollView}
-          contentContainerStyle={styles.contentContainer}
+          contentContainerStyle={[
+            styles.contentContainer,
+            isMobile && styles.contentContainerMobile,
+          ]}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
           keyboardDismissMode="on-drag"
@@ -133,9 +137,9 @@ export function HomeScreen() {
               progressBackgroundColor={theme.backgroundElement}
             />
           }>
-          <View style={styles.innerWrapper}>
+          <View style={[styles.innerWrapper, isMobile && styles.innerWrapperMobile]}>
             <View style={styles.headerRow}>
-              <ThemedText type="subtitle" style={styles.title}>
+              <ThemedText type="subtitle" style={[styles.title, isMobile && styles.titleMobile]}>
                 Balances
               </ThemedText>
               <ChangeTokenButton label="Token" />

@@ -7,13 +7,13 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: Spacing.four,
+    padding: Spacing.three,
   },
   card: {
     width: '100%',
-    maxWidth: 440,
+    maxWidth: 400,
     borderRadius: Spacing.four,
-    padding: Spacing.five,
+    padding: Spacing.four,
     gap: Spacing.three,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 10 },
@@ -28,8 +28,8 @@ export const styles = StyleSheet.create({
     marginBottom: Spacing.one,
   },
   title: {
-    fontSize: 26,
-    lineHeight: 32,
+    fontSize: 24,
+    lineHeight: 30,
   },
   description: {
     lineHeight: 22,
@@ -41,6 +41,7 @@ export const styles = StyleSheet.create({
     paddingVertical: Spacing.three,
     fontSize: 14,
     marginTop: Spacing.two,
+    minHeight: 48,
   },
   submitButton: {
     backgroundColor: '#0274DF',
@@ -50,6 +51,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: Spacing.two,
+    minHeight: 48,
   },
   submitButtonText: {
     color: '#ffffff',

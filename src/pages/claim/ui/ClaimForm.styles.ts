@@ -11,6 +11,11 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(255, 255, 255, 0.08)',
   },
+  formCardMobile: {
+    padding: Spacing.three,
+    borderRadius: Spacing.three,
+    gap: Spacing.four,
+  },
   section: {
     gap: Spacing.two,
   },
@@ -25,14 +30,16 @@ export const styles = StyleSheet.create({
     gap: Spacing.two,
   },
   assetChip: {
+    flex: 1,
+    minWidth: 80,
+    maxWidth: 140,
     paddingVertical: Spacing.two,
-    paddingHorizontal: Spacing.four,
+    paddingHorizontal: Spacing.two,
     borderRadius: Spacing.three,
     borderWidth: 1,
     borderColor: 'transparent',
     alignItems: 'center',
     gap: 2,
-    minWidth: 90,
   },
   assetChipSelected: {
     borderColor: '#0274DF',
@@ -40,13 +47,14 @@ export const styles = StyleSheet.create({
   },
   destinationItem: {
     paddingVertical: Spacing.three,
-    paddingHorizontal: Spacing.four,
+    paddingHorizontal: Spacing.three,
     borderRadius: Spacing.three,
     borderWidth: 1,
     borderColor: 'rgba(150, 150, 150, 0.2)',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    minHeight: 48,
   },
   destinationSelected: {
     borderColor: '#0274DF',
@@ -59,6 +67,7 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(150, 150, 150, 0.25)',
     paddingHorizontal: Spacing.three,
+    minHeight: 48,
   },
   inputWrapperError: {
     borderColor: '#EF4444',
@@ -68,7 +77,7 @@ export const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    paddingVertical: Spacing.three,
+    paddingVertical: Spacing.two,
     fontSize: 18,
     fontFamily: 'monospace',
   },
@@ -77,6 +86,8 @@ export const styles = StyleSheet.create({
     paddingVertical: Spacing.one,
     paddingHorizontal: Spacing.three,
     borderRadius: Spacing.two,
+    minHeight: 32,
+    justifyContent: 'center',
   },
   maxButtonText: {
     color: '#ffffff',
@@ -110,6 +121,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: Spacing.one,
   },
   breakdownDivider: {
     height: 1,
@@ -117,8 +130,9 @@ export const styles = StyleSheet.create({
   },
   receiveHighlight: {
     color: '#10B981',
-    fontSize: 18,
-    lineHeight: 22,
+    fontSize: 16,
+    lineHeight: 20,
+    fontWeight: '700',
   },
   submitButton: {
     backgroundColor: '#0274DF',
@@ -127,6 +141,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: Spacing.two,
+    minHeight: 48,
   },
   submitButtonDisabled: {
     opacity: 0.5,

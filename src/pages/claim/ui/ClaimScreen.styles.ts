@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/shared/config';
+import { MaxContentWidth, Spacing } from '@/shared/config';
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,14 +13,23 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
     paddingHorizontal: Spacing.four,
     paddingTop: Spacing.four,
-    paddingBottom: BottomTabInset + Spacing.five,
+    paddingBottom: Spacing.five,
     alignItems: 'center',
+  },
+  contentContainerMobile: {
+    paddingHorizontal: Spacing.three,
+    paddingTop: Spacing.two,
+    paddingBottom: 88,
   },
   innerWrapper: {
     width: '100%',
     maxWidth: MaxContentWidth,
     gap: Spacing.four,
     marginTop: Spacing.six,
+  },
+  innerWrapperMobile: {
+    marginTop: Spacing.two,
+    gap: Spacing.three,
   },
   headerRow: {
     flexDirection: 'row',
@@ -38,6 +47,10 @@ export const styles = StyleSheet.create({
     fontSize: 28,
     lineHeight: 34,
   },
+  titleMobile: {
+    fontSize: 24,
+    lineHeight: 30,
+  },
   subtitle: {
     marginTop: -Spacing.two,
   },
@@ -50,6 +63,11 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(2, 116, 223, 0.3)',
     backgroundColor: 'rgba(2, 116, 223, 0.08)',
+  },
+  activeClaimBannerMobile: {
+    padding: Spacing.three,
+    gap: Spacing.two,
+    flexWrap: 'wrap',
   },
   bannerLeft: {
     flexDirection: 'row',

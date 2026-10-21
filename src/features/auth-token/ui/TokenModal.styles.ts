@@ -8,13 +8,13 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.65)',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: Spacing.four,
+    padding: Spacing.three,
   },
   card: {
     width: '100%',
-    maxWidth: 440,
+    maxWidth: 400,
     borderRadius: Spacing.four,
-    padding: Spacing.five,
+    padding: Spacing.four,
     gap: Spacing.three,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 8 },
@@ -23,8 +23,8 @@ export const styles = StyleSheet.create({
     elevation: 8,
   },
   title: {
-    fontSize: 22,
-    lineHeight: 28,
+    fontSize: 20,
+    lineHeight: 26,
   },
   description: {
     lineHeight: 20,
@@ -33,9 +33,10 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: Spacing.two,
     paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.three,
+    paddingVertical: Spacing.two + 2,
     fontSize: 14,
     marginTop: Spacing.one,
+    minHeight: 44,
   },
   actions: {
     flexDirection: 'row',
@@ -44,6 +45,7 @@ export const styles = StyleSheet.create({
     marginTop: Spacing.two,
   },
   button: {
+    minHeight: 44,
     paddingVertical: Spacing.two,
     paddingHorizontal: Spacing.four,
     borderRadius: Spacing.two,

@@ -9,6 +9,11 @@ export const styles = StyleSheet.create({
     padding: Spacing.four,
     gap: Spacing.three,
   },
+  cardMobile: {
+    padding: Spacing.three,
+    borderRadius: Spacing.three,
+    gap: Spacing.two,
+  },
   headerRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -19,13 +24,19 @@ export const styles = StyleSheet.create({
     lineHeight: 44,
     fontWeight: '700',
   },
+  totalAmountMobile: {
+    fontSize: 32,
+    lineHeight: 38,
+  },
   breakdownGrid: {
     flexDirection: 'row',
     gap: Spacing.two,
     marginTop: Spacing.one,
+    flexWrap: 'wrap',
   },
   statBlock: {
     flex: 1,
+    minWidth: 90,
     padding: Spacing.two,
     borderRadius: Spacing.two,
     gap: Spacing.half,

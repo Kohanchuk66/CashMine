@@ -4,7 +4,7 @@ import { ActivityIndicator, Pressable, TextInput, View } from 'react-native';
 
 import { useClaimOptions } from '@/shared/api';
 import type { BalanceItem } from '@/shared/api';
-import { useTheme } from '@/shared/lib';
+import { useResponsive, useTheme } from '@/shared/lib';
 import { ThemedText, ThemedView } from '@/shared/ui';
 import { validateClaimInput } from '../model/validation';
 import { styles } from './ClaimForm.styles';
@@ -27,6 +27,7 @@ export type ClaimFormProps = {
 
 export function ClaimForm({ items, initialAsset, serverError, onReview }: ClaimFormProps) {
   const theme = useTheme();
+  const { isMobile } = useResponsive();
 
   const [selectedAssetSymbol, setSelectedAssetSymbol] = useState<string>(
     initialAsset || items[0]?.asset || ''
@@ -113,7 +114,9 @@ export function ClaimForm({ items, initialAsset, serverError, onReview }: ClaimF
   const numReceive = parseFloat(validation.receiveAmount) || 0;
 
   return (
-    <ThemedView type="backgroundElement" style={styles.formCard}>
+    <ThemedView
+      type="backgroundElement"
+      style={[styles.formCard, isMobile && styles.formCardMobile]}>
       <View style={styles.section}>
         <View style={styles.sectionHeader}>
           <ThemedText type="smallBold">Select Asset</ThemedText>

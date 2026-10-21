@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/shared/config';
+import { MaxContentWidth, Spacing } from '@/shared/config';
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,14 +13,23 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
     paddingHorizontal: Spacing.four,
     paddingTop: Spacing.four,
-    paddingBottom: BottomTabInset + Spacing.five,
+    paddingBottom: Spacing.five,
     alignItems: 'center',
+  },
+  contentContainerMobile: {
+    paddingHorizontal: Spacing.three,
+    paddingTop: Spacing.two,
+    paddingBottom: 88,
   },
   innerWrapper: {
     width: '100%',
     maxWidth: MaxContentWidth,
     gap: Spacing.four,
     marginTop: Spacing.six,
+  },
+  innerWrapperMobile: {
+    marginTop: Spacing.two,
+    gap: Spacing.three,
   },
   headerRow: {
     flexDirection: 'row',
@@ -32,6 +41,10 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     lineHeight: 34,
+  },
+  titleMobile: {
+    fontSize: 24,
+    lineHeight: 30,
   },
   sectionTitle: {
     fontSize: 18,

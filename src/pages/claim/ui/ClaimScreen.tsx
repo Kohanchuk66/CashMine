@@ -12,7 +12,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useBalances, useCreateClaim } from '@/shared/api';
-import { useTheme } from '@/shared/lib';
+import { useResponsive, useTheme } from '@/shared/lib';
 import { ThemedText, ThemedView } from '@/shared/ui';
 import { ChangeTokenButton, useToken } from '@/features/auth-token';
 import { getStoredActiveClaimId, setStoredActiveClaimId } from '../model/active-claim-storage';
@@ -23,6 +23,7 @@ import { styles } from './ClaimScreen.styles';
 
 export function ClaimScreen() {
   const theme = useTheme();
+  const { isMobile } = useResponsive();
   const { token, isReady } = useToken();
   const params = useLocalSearchParams<{ asset?: string; claimId?: string }>();
 
@@ -174,7 +175,10 @@ export function ClaimScreen() {
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
         <ScrollView
           style={styles.scrollView}
-          contentContainerStyle={styles.contentContainer}
+          contentContainerStyle={[
+            styles.contentContainer,
+            isMobile && styles.contentContainerMobile,
+          ]}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="handled"
           keyboardDismissMode="on-drag"
@@ -194,9 +198,9 @@ export function ClaimScreen() {
               progressBackgroundColor={theme.backgroundElement}
             />
           }>
-          <View style={styles.innerWrapper}>
+          <View style={[styles.innerWrapper, isMobile && styles.innerWrapperMobile]}>
             <View style={styles.headerRow}>
-              <ThemedText type="subtitle" style={styles.title}>
+              <ThemedText type="subtitle" style={[styles.title, isMobile && styles.titleMobile]}>
                 Claim
               </ThemedText>
               <View style={styles.headerActions}>

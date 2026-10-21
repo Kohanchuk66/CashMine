@@ -9,15 +9,21 @@ export const styles = StyleSheet.create({
     padding: Spacing.four,
     gap: Spacing.three,
   },
+  cardMobile: {
+    padding: Spacing.three,
+    gap: Spacing.two,
+  },
   topRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    gap: Spacing.two,
   },
   assetIdentity: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: Spacing.two,
+    flexShrink: 1,
   },
   assetBadge: {
     paddingVertical: Spacing.half,
@@ -26,6 +32,7 @@ export const styles = StyleSheet.create({
   },
   valuesColumn: {
     alignItems: 'flex-end',
+    flexShrink: 1,
   },
   breakdownRow: {
     flexDirection: 'row',
@@ -33,9 +40,11 @@ export const styles = StyleSheet.create({
     gap: Spacing.two,
     paddingTop: Spacing.two,
     borderTopWidth: 1,
+    flexWrap: 'wrap',
   },
   fieldBlock: {
     flex: 1,
+    minWidth: 80,
     gap: Spacing.half,
   },
   availableColor: {
@@ -54,10 +63,12 @@ export const styles = StyleSheet.create({
     borderRadius: Spacing.one,
     marginTop: Spacing.half,
     alignSelf: 'flex-start',
+    minHeight: 28,
+    justifyContent: 'center',
   },
   claimButtonText: {
     color: '#ffffff',
-    fontSize: 11,
+    fontSize: 12,
   },
   pressed: {
     opacity: 0.7,

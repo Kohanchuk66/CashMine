@@ -23,7 +23,7 @@ export function useClaim(id: string, options?: { enabled?: boolean }) {
   return useApiQuery<Claim>({
     queryKey: queryKeys.claim(id),
     queryFn: () => getClaim(id),
-    enabled: options?.enabled ?? Boolean(id),
+    enabled: (options?.enabled ?? true) && Boolean(id),
     refetchInterval: (query) => {
       const data = query.state.data as Claim | undefined;
       return data?.status === 'pending' ? 3000 : false;

@@ -47,4 +47,19 @@ export const styles = StyleSheet.create({
   claimingColor: {
     color: '#3B82F6',
   },
+  claimButton: {
+    backgroundColor: '#0274DF',
+    paddingVertical: Spacing.half,
+    paddingHorizontal: Spacing.two,
+    borderRadius: Spacing.one,
+    marginTop: Spacing.half,
+    alignSelf: 'flex-start',
+  },
+  claimButtonText: {
+    color: '#ffffff',
+    fontSize: 11,
+  },
+  pressed: {
+    opacity: 0.7,
+  },
 });

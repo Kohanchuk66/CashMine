@@ -7,6 +7,6 @@ export function useClaimOptions(asset: string, options?: { enabled?: boolean }) 
   return useApiQuery<ClaimOptionsResponse>({
     queryKey: queryKeys.claimOptions(asset),
     queryFn: () => getClaimOptions({ asset }),
-    enabled: options?.enabled ?? Boolean(asset),
+    enabled: (options?.enabled ?? true) && Boolean(asset),
   });
 }

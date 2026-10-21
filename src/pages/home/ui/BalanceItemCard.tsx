@@ -1,5 +1,6 @@
+import { router } from 'expo-router';
 import { memo } from 'react';
-import { View } from 'react-native';
+import { Pressable, View } from 'react-native';
 
 import { useTheme } from '@/shared/lib';
 import { ThemedText, ThemedView } from '@/shared/ui';
@@ -59,6 +60,15 @@ export const BalanceItemCard = memo(function BalanceItemCard({ item }: BalanceIt
           <ThemedText type="smallBold" style={styles.availableColor}>
             {avail.toFixed(Math.min(item.decimals, 4))}
           </ThemedText>
+          {avail > 0 && (
+            <Pressable
+              onPress={() => router.push(`/claim?asset=${item.asset}`)}
+              style={({ pressed }) => [styles.claimButton, pressed && styles.pressed]}>
+              <ThemedText type="smallBold" style={styles.claimButtonText}>
+                Claim
+              </ThemedText>
+            </Pressable>
+          )}
         </View>
 
         <View style={styles.fieldBlock}>
